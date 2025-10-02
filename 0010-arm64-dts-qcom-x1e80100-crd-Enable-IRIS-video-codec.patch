@@ -1,0 +1,32 @@
+From 8335bc200bee48570876ce949c81b0c8b718a004 Mon Sep 17 00:00:00 2001
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Date: Tue, 1 Jul 2025 17:15:38 +0200
+Subject: [PATCH 10/16] arm64: dts: qcom: x1e80100-crd: Enable IRIS video codec
+
+IRIS firmware for x1e80100-crd is already upstream in linux-firmware in the
+default path, so enable IRIS for the CRD to accelerate video decoding.
+
+It looks like the X1P CRD might need a different IRIS firmware (possibly
+even changes in the Linux kernel driver), so keep it local to the X1E CRD
+for now.
+
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+index 976b8e44b..dfc378e1a 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+@@ -16,3 +16,7 @@ / {
+ &gpu_zap_shader {
+ 	firmware-name = "qcom/x1e80100/gen70500_zap.mbn";
+ };
++
++&iris {
++	status = "okay";
++};
+-- 
+2.51.0
+

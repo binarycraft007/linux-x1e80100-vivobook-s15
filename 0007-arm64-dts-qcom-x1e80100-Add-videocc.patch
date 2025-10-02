@@ -1,0 +1,51 @@
+From ba99762fc0d27b9542a8e498890aa3a310e846f2 Mon Sep 17 00:00:00 2001
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Date: Wed, 9 Jul 2025 12:08:58 +0200
+Subject: [PATCH 07/16] arm64: dts: qcom: x1e80100: Add videocc
+
+Add the video clock controller for X1E80100, similar to sm8550.dtsi. It
+provides the needed clocks/power domains for the iris video codec.
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Link: https://lore.kernel.org/r/20250709-x1e-videocc-v2-6-ad1acf5674b4@linaro.org
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index c7ad7a36b..fc4f58a72 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/clock/qcom,rpmh.h>
+ #include <dt-bindings/clock/qcom,sc8280xp-lpasscc.h>
+ #include <dt-bindings/clock/qcom,x1e80100-camcc.h>
++#include <dt-bindings/clock/qcom,sm8450-videocc.h>
+ #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
+ #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
+ #include <dt-bindings/clock/qcom,x1e80100-gpucc.h>
+@@ -5172,6 +5173,20 @@ usb_1_ss1_dwc3_ss: endpoint {
+ 			};
+ 		};
+ 
++		videocc: clock-controller@aaf0000 {
++			compatible = "qcom,x1e80100-videocc";
++			reg = <0 0x0aaf0000 0 0x10000>;
++			clocks = <&bi_tcxo_div2>,
++				 <&gcc GCC_VIDEO_AHB_CLK>;
++			power-domains = <&rpmhpd RPMHPD_MMCX>,
++					<&rpmhpd RPMHPD_MXC>;
++			required-opps = <&rpmhpd_opp_low_svs>,
++					<&rpmhpd_opp_low_svs>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
+ 		cci0: cci@ac15000 {
+ 			compatible = "qcom,x1e80100-cci", "qcom,msm8996-cci";
+ 			reg = <0 0x0ac15000 0 0x1000>;
+-- 
+2.51.0
+
