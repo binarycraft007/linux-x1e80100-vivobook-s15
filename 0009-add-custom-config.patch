@@ -1,7 +1,7 @@
-From 9638cd9f1878b280f14e5bb3f6406f0de6e1d9e5 Mon Sep 17 00:00:00 2001
+From bb46101470e31f886b98ffe105305188354fa019 Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Fri, 26 Sep 2025 22:10:56 +0800
-Subject: [PATCH 15/16] add custom config
+Subject: [PATCH 09/11] add custom config
 
 ---
  arch/arm64/configs/misc.config |  36 +++

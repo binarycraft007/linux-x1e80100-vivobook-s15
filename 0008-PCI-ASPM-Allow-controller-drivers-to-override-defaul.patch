@@ -1,7 +1,7 @@
-From 4978c46813a54b0188808f848bde0ba67e539039 Mon Sep 17 00:00:00 2001
+From 8c0246ee803f376e55f102c0a67b58d54b09548e Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Sun, 21 Sep 2025 22:14:32 +0800
-Subject: [PATCH 14/16] PCI/ASPM: Allow controller drivers to override default
+Subject: [PATCH 08/11] PCI/ASPM: Allow controller drivers to override default
  ASPM and CLKPM link state
 
 ---

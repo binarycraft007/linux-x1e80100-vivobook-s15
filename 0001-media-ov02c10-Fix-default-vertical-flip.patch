@@ -1,7 +1,7 @@
-From 19e894945eca1485e6bcae77bc78a43d4435fd8d Mon Sep 17 00:00:00 2001
+From bb13bfbea1d20f1f4e511ab528adb21b772eaef6 Mon Sep 17 00:00:00 2001
 From: Sebastian Reichel <sre@kernel.org>
 Date: Wed, 20 Aug 2025 02:13:19 +0200
-Subject: [PATCH 03/16] media: ov02c10: Fix default vertical flip
+Subject: [PATCH 01/11] media: ov02c10: Fix default vertical flip
 
 The driver right now defaults to setting the vertical flip bit. This
 conflicts with proper handling of the rotation property defined in

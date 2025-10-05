@@ -1,7 +1,7 @@
-From 66fe00c1520d3092e71d9eb9f2c00d250398a24e Mon Sep 17 00:00:00 2001
+From c2c7c2a145de6cbd8859b04d976ecf05e9930b23 Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Sat, 20 Sep 2025 19:23:41 +0800
-Subject: [PATCH 12/16] arm64: dts: qcom: x1e80100-asus-vivobook-s15: Enable
+Subject: [PATCH 06/11] arm64: dts: qcom: x1e80100-asus-vivobook-s15: Enable
  Iris video codec
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 12/16] arm64: dts: qcom: x1e80100-asus-vivobook-s15: Enable
  1 file changed, 5 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index bbc8515e5..ed6b0a303 100644
+index 62ffee10c..b787f6a7c 100644
 --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
 +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
 @@ -709,6 +709,11 @@ &i2c7 {

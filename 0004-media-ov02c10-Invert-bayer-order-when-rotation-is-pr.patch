@@ -1,7 +1,7 @@
-From 0f715684bb13ebf47ca4ca48c8583201167e7117 Mon Sep 17 00:00:00 2001
+From 7e2da48fcb2b65d014ed80b74bc4a677910ecbd1 Mon Sep 17 00:00:00 2001
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Date: Mon, 1 Sep 2025 21:14:25 +0100
-Subject: [PATCH 06/16] media: ov02c10: Invert bayer order when rotation is
+Subject: [PATCH 04/11] media: ov02c10: Invert bayer order when rotation is
  present in dts
 
 When we invert the sensor output the order of bayer bytes changes.

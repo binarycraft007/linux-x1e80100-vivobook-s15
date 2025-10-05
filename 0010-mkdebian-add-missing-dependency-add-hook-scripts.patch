@@ -1,7 +1,7 @@
-From 98b5b9866321853f0e1eb5a3881047da0f56e81e Mon Sep 17 00:00:00 2001
+From a6f210348f8c3c5d44a7d078eb3b9ce40d0f4685 Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Sat, 27 Sep 2025 19:42:41 +0800
-Subject: [PATCH 16/16] mkdebian: add missing dependency, add hook scripts
+Subject: [PATCH 10/11] mkdebian: add missing dependency, add hook scripts
 
 ---
  scripts/package/mkdebian | 131 +++++++++++++++++++++++++++++++++++++--
