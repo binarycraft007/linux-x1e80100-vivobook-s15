@@ -1,14 +1,14 @@
-From 183a324dc2f9b68eb51d17d89e1af05fe6f8a07a Mon Sep 17 00:00:00 2001
+From 5ffef2c3e491faddb466e1e7cb82e15b6a6fcc9b Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Mon, 2 Jun 2025 13:27:03 +0800
-Subject: [PATCH 05/11] arm64: dts: qcom: support sound on Asus Vivobook S15
+Subject: [PATCH 1/5] arm64: dts: qcom: support sound on Asus Vivobook S15
 
 ---
  .../dts/qcom/x1e80100-asus-vivobook-s15.dts   | 202 ++++++++++++++++++
  1 file changed, 202 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index 4f918649e..62ffee10c 100644
+index 0113d856b..71117c4b5 100644
 --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
 +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
 @@ -23,6 +23,32 @@ aliases {
@@ -187,7 +187,7 @@ index 4f918649e..62ffee10c 100644
  &mdss {
  	status = "okay";
  };
-@@ -745,6 +886,59 @@ &smb2360_1_eusb2_repeater {
+@@ -739,6 +880,59 @@ &smb2360_1_eusb2_repeater {
  	vdd3-supply = <&vreg_l14b_3p0>;
  };
  
@@ -247,7 +247,7 @@ index 4f918649e..62ffee10c 100644
  &tlmm {
  	gpio-reserved-ranges = <34 2>, /* Unused */
  			       <44 4>, /* SPI (TPM) */
-@@ -852,6 +1046,14 @@ tpad_default: tpad-default-state {
+@@ -846,6 +1040,14 @@ tpad_default: tpad-default-state {
  		bias-disable;
  	};
  
@@ -263,5 +263,5 @@ index 4f918649e..62ffee10c 100644
  		pins = "gpio116";
  		function = "gpio";
 -- 
-2.51.0
+2.52.0
 

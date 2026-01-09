@@ -1,26 +1,49 @@
-From 9434141de594b981f9a2edee2368e6823480e44a Mon Sep 17 00:00:00 2001
+From 881d730aeb4468b053cc2793b6de2fefe92741ca Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Sun, 5 Oct 2025 23:31:21 +0800
-Subject: [PATCH 11/11] arm64: dts: qcom: x1-asus-vivobook-s15: Add OV02C10 RGB
-  sensor on CSIPHY4
+Subject: [PATCH 4/5] arm64: dts: qcom: x1-asus-vivobook-s15: Add OV02C10 RGB
+ sensor on CSIPHY4
 
 ---
- .../dts/qcom/x1e80100-asus-vivobook-s15.dts   | 168 +++++++++++++++++-
- 1 file changed, 160 insertions(+), 8 deletions(-)
+ .../dts/qcom/x1e80100-asus-vivobook-s15.dts   | 192 +++++++++++++++++-
+ 1 file changed, 185 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index b787f6a7c..106686523 100644
+index a0e518958..356639bbd 100644
 --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
 +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-@@ -8,6 +8,7 @@
+@@ -8,6 +8,8 @@
  
  #include <dt-bindings/gpio/gpio.h>
  #include <dt-bindings/input/gpio-keys.h>
 +#include <dt-bindings/phy/phy.h>
++#include <dt-bindings/leds/common.h>
  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
  
-@@ -419,6 +420,13 @@ vreg_l4b_1p8: ldo4 {
+@@ -63,6 +65,21 @@ switch-lid {
+ 		};
+ 	};
+ 
++	leds {
++		compatible = "gpio-leds";
++
++		pinctrl-0 = <&cam_indicator_en>;
++		pinctrl-names = "default";
++
++		privacy_led: privacy-led {
++			function = LED_FUNCTION_INDICATOR;
++			color = <LED_COLOR_ID_WHITE>;
++			gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++			panic-indicator;
++		};
++	};
++
+ 	pmic-glink {
+ 		compatible = "qcom,x1e80100-pmic-glink",
+ 			     "qcom,sm8550-pmic-glink",
+@@ -419,6 +436,13 @@ vreg_l4b_1p8: ldo4 {
  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
  		};
  
@@ -34,7 +57,7 @@ index b787f6a7c..106686523 100644
  		vreg_l12b_1p2: ldo12 {
  			regulator-name = "vreg_l12b_1p2";
  			regulator-min-microvolt = <1200000>;
-@@ -458,19 +466,33 @@ regulators-1 {
+@@ -458,19 +482,33 @@ regulators-1 {
  		vdd-l3-supply = <&vreg_s1f_0p7>;
  		vdd-s4-supply = <&vph_pwr>;
  
@@ -75,7 +98,7 @@ index b787f6a7c..106686523 100644
  	};
  
  	regulators-2 {
-@@ -598,6 +620,120 @@ vreg_l3j_0p8: ldo3 {
+@@ -598,6 +636,123 @@ vreg_l3j_0p8: ldo3 {
  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
  		};
  	};
@@ -166,12 +189,15 @@ index b787f6a7c..106686523 100644
 +		pinctrl-names = "default";
 +		pinctrl-0 = <&cam_rgb_default>;
 +
++		leds = <&privacy_led>;
++		led-names = "privacy";
++
 +		clocks = <&camcc CAM_CC_MCLK4_CLK>;
 +		assigned-clocks = <&camcc CAM_CC_MCLK4_CLK>;
 +		assigned-clock-rates = <19200000>;
 +
 +		orientation = <0>; /* front facing */
-+		rotation = <180>;
++		rotation = <0>;
 +
 +		avdd-supply = <&vreg_l7b_2p8>;
 +		dvdd-supply = <&vreg_l7b_2p8>;
@@ -196,10 +222,17 @@ index b787f6a7c..106686523 100644
  };
  
  &gpu {
-@@ -949,6 +1085,22 @@ &tlmm {
+@@ -943,6 +1098,29 @@ &tlmm {
  			       <44 4>, /* SPI (TPM) */
  			       <238 1>; /* UFS Reset */
  
++	cam_indicator_en: cam-indicator-en-state {
++		pins = "gpio110";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
 +	cam_rgb_default: cam-rgb-default-state {
 +		mclk-pins {
 +			pins = "gpio100";
@@ -219,13 +252,6 @@ index b787f6a7c..106686523 100644
  	edp_reg_en: edp-reg-en-state {
  		pins = "gpio70";
  		function = "gpio";
-@@ -1213,4 +1365,4 @@ &usb_mp_qmpphy1 {
- 	vdda-pll-supply = <&vreg_l3c_0p8>;
- 
- 	status = "okay";
--};
-+};
-\ No newline at end of file
 -- 
-2.51.0
+2.52.0
 

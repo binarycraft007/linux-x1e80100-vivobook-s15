@@ -1,15 +1,15 @@
-From c2c7c2a145de6cbd8859b04d976ecf05e9930b23 Mon Sep 17 00:00:00 2001
+From 217c1be4c529640dde035389255d4ee592797fd5 Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Sat, 20 Sep 2025 19:23:41 +0800
-Subject: [PATCH 06/11] arm64: dts: qcom: x1e80100-asus-vivobook-s15: Enable
- Iris video codec
+Subject: [PATCH 2/5] arm64: dts: qcom: x1e80100-asus-vivobook-s15: Enable Iris
+ video codec
 
 ---
  arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts | 5 +++++
  1 file changed, 5 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index 62ffee10c..b787f6a7c 100644
+index 71117c4b5..a0e518958 100644
 --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
 +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
 @@ -709,6 +709,11 @@ &i2c7 {
@@ -25,5 +25,5 @@ index 62ffee10c..b787f6a7c 100644
  	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
  		pins = "gpio12";
 -- 
-2.51.0
+2.52.0
 

@@ -1,20 +1,20 @@
-From 96aac7b7b65133e76d41510f19485c51301d98fc Mon Sep 17 00:00:00 2001
+From d8c89326418c817bd3b39935dd190769e560bf31 Mon Sep 17 00:00:00 2001
 From: binarycraft007 <elliot.huang.signed@gmail.com>
 Date: Sun, 21 Sep 2025 18:34:18 +0800
-Subject: [PATCH 07/11] hid: add asus vivobook s 15
+Subject: [PATCH 3/5] hid: add asus vivobook s 15
 
 ---
  drivers/hid/Kconfig                 |  14 ++
  drivers/hid/Makefile                |   1 +
- drivers/hid/hid-asus-vivobook-s15.c | 365 ++++++++++++++++++++++++++++
- 3 files changed, 380 insertions(+)
+ drivers/hid/hid-asus-vivobook-s15.c | 346 ++++++++++++++++++++++++++++
+ 3 files changed, 361 insertions(+)
  create mode 100644 drivers/hid/hid-asus-vivobook-s15.c
 
 diff --git a/drivers/hid/Kconfig b/drivers/hid/Kconfig
-index 79997553d..33a60e3f5 100644
+index 04420a713..e7386acfe 100644
 --- a/drivers/hid/Kconfig
 +++ b/drivers/hid/Kconfig
-@@ -191,6 +191,20 @@ config HID_ASUS
+@@ -202,6 +202,20 @@ config HID_ASUS
  	- GL553V series
  	- GL753V series
  
@@ -36,10 +36,10 @@ index 79997553d..33a60e3f5 100644
  	tristate "Aureal"
  	help
 diff --git a/drivers/hid/Makefile b/drivers/hid/Makefile
-index 10ae5dedb..2a38ded67 100644
+index 361a7daed..7f287d1d7 100644
 --- a/drivers/hid/Makefile
 +++ b/drivers/hid/Makefile
-@@ -33,6 +33,7 @@ obj-$(CONFIG_HID_APPLETB_BL)	+= hid-appletb-bl.o
+@@ -34,6 +34,7 @@ obj-$(CONFIG_HID_APPLETB_BL)	+= hid-appletb-bl.o
  obj-$(CONFIG_HID_APPLETB_KBD)	+= hid-appletb-kbd.o
  obj-$(CONFIG_HID_CREATIVE_SB0540)	+= hid-creative-sb0540.o
  obj-$(CONFIG_HID_ASUS)		+= hid-asus.o
@@ -49,10 +49,10 @@ index 10ae5dedb..2a38ded67 100644
  obj-$(CONFIG_HID_BETOP_FF)	+= hid-betopff.o
 diff --git a/drivers/hid/hid-asus-vivobook-s15.c b/drivers/hid/hid-asus-vivobook-s15.c
 new file mode 100644
-index 000000000..7cbf43217
+index 000000000..b0534f3e0
 --- /dev/null
 +++ b/drivers/hid/hid-asus-vivobook-s15.c
-@@ -0,0 +1,365 @@
+@@ -0,0 +1,346 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
 + * HID driver for ASUS Vivobook S15 S5507 Keyboard
@@ -378,24 +378,6 @@ index 000000000..7cbf43217
 +	return 0;
 +}
 +
-+static int __maybe_unused vivobook_s15_reset_resume(struct hid_device *hdev)
-+{
-+	struct vivobook_s15_kbd *priv = hid_get_drvdata(hdev);
-+
-+	dev_info(&hdev->dev, "Resuming, restoring keyboard state\n");
-+
-+	/*
-+	 * On resume, run the full initialization sequence and restore the
-+	 * backlight and Fn-Lock states.
-+	 */
-+	set_init_unk_1(hdev);
-+	set_init_unk_2(hdev);
-+	led_set_brightness_sync(&priv->kbd_backlight, priv->backlight_brightness);
-+	set_fn_lock(hdev, priv->fn_lock_state);
-+
-+	return 0;
-+}
-+
 +static const struct hid_device_id vivobook_s15_kbd_id_table[] = {
 +	{ HID_I2C_DEVICE(VID_ASUS, PID_VIVOBOOK_S15_S5507_KEYBOARD) },
 +	{ } /* Terminating entry */
@@ -410,7 +392,6 @@ index 000000000..7cbf43217
 +	.raw_event = vivobook_s15_raw_event,
 +#ifdef CONFIG_PM
 +	.suspend = vivobook_s15_suspend,
-+	.reset_resume = vivobook_s15_reset_resume,
 +#endif
 +};
 +module_hid_driver(vivobook_s15_kbd_driver);
@@ -419,5 +400,5 @@ index 000000000..7cbf43217
 +MODULE_AUTHOR("Elliot Huang <keep.it.sns@gmail.com>");
 +MODULE_DESCRIPTION("HID driver for ASUS Vivobook S15 S5507 Keyboard");
 -- 
-2.51.0
+2.52.0
 
